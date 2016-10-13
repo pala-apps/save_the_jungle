@@ -10,14 +10,31 @@
   <title>Brunch with ES6</title>
 </head>
 <body>
+  <nav>
+    <header>
+      <h1>SAVE THE JUNGLE</h1>
+    </header>
+  </nav>
   <div id="container">
     <div id="canvas"></div>
-    <div id="editor"> Editor
-      <div>
-        steps =
-        <input id="steps" type="number" name="name" value="0">
-        Move("Theo", steps, "UP")
-        <input id="run" type="button" name="name" value="Run!">
+    <div id="editor" class="panel">
+      <div class="panel-header">
+        LEVEL 1
+      </div>
+      <div class="panel-body">
+        We're on a mission to save the jungle! Before we can start we need to enter by moving to the right location. Enter how many steps you think Theo needs to move...
+        <div class="user-input">
+          <span class="var-name">
+            steps =
+          </span>
+          <input id="steps" type="number" name="name" value="0">
+        </div>
+
+        <div class="fn-call">
+          Move("Theo", steps, "RIGHT")
+        </div>
+        <input class="btn-run" id="run" type="button" name="name" value="Run!">
+        <p>When we click run we tell Theo to move right by the number of steps! Because we can change the number of steps we can call this variable.</p>
       </div>
     </div>
   </div>
