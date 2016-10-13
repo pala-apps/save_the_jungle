@@ -9,7 +9,7 @@ module.exports = {
   },
 
   plugins: {
-    babel: {presets: ['es2015']},
+    babel: {presets: ['es2015',"react"]},
     swPrecache: {
       'swFileName': 'sw.js',
       'options': {

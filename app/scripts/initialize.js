@@ -1,27 +1,25 @@
 // global.PIXI = require('pixi.js');
 // global.p2 = require('p2');
 // global.Phaser = require('phaser');
-
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'canvas', { preload: preload, create: create, update: update });
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Editor from './components/Editor.jsx'
 
 var dude;
-let steps = 0
+let steps = 0;
+let isRunning = false;
 
-const stepInput = document.getElementById( "steps");
-stepInput.onchange = (e)=>{
-  console.log("input changed", e.target.value);
-  steps = e.target.value;
-}
-
-
-const runButton = document.getElementById( "run");
-let isRunning = false
-runButton.onclick = (e)=>{
-  console.log('but clicked')
+function runGame(numSteps){
   isRunning = true
+  steps = numSteps
 }
 
+ReactDOM.render(
+  <Editor runGame={runGame} />,
+  document.getElementById('editor')
+)
 
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'canvas', { preload: preload, create: create, update: update });
 
 
 
@@ -44,7 +42,8 @@ function update() {
       if(steps === 0){
         dude.animations.stop('walk')
         isRunning = false;
-        const hasWon = dude.x === 40
+        const hasWon = dude.x === 50
+        console.log('dudex', dude.x)
         if(hasWon){
           alert("Winner")
         }else{
