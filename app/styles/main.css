@@ -1,6 +1,79 @@
-/*body {
-  background: black;
-}*/
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+body {
+  background: #222;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+}
+
+nav header {
+  text-align: center;
+  font-size: 44px;
+}
+
+nav header h1 {
+  font-family: 'Bungee Inline', cursive;
+  color: #fff;
+}
+
+.panel {
+
+}
+
+.panel-header {
+  font-size: 28px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.panel-body {
+  padding: 25px;
+  color: #fff;
+}
+
+.user-input {
+  margin: 50px 0;
+}
+
+.var-name {
+  background-color: #222;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.fn-call {
+  text-align: center;
+  padding:10px 0;
+  background-color: #999;
+}
+
+input[type="number"],
+input[type="text"] {
+  background-color: #555;
+  height:42px;
+  box-sizing: border-box;
+  border: none;
+  color: #fff;
+  padding: 15px;
+  outline: 0;
+}
+
+.btn-run {
+  font-family: 'Bungee Inline', cursive;
+  background-color: #34b3a0;
+  border: none;
+  display: block;
+  color: #fff;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  outline: 0;
+  cursor: pointer;
+}
+
 #container{
   display: flex;
   flex-direction: 'row';
@@ -11,4 +84,5 @@
 }
 #editor{
   flex-grow:2;
+  background-color: #333;
 }
