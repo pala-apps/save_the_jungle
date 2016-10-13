@@ -14,27 +14,59 @@ document.getElementById('canvas').appendChild(renderer.view);
 // You need to create a root container that will hold the scene you want to draw.
 var stage = new PIXI.Container();
 
+function spriteSheetArray(url, height, width, numberOfRows, numberOfCols){
+  const size = height/numberOfRows
+  var out = []
+  for (var i = 0; i < numberOfRows; i++) {
+    for (var j = 0; j < numberOfCols; j++) {
+      var rectangle = new PIXI.Rectangle(i*size, j*size, size, size)
+      var texture = PIXI.TextureCache[url];
+      texture.frame = rectangle;
+      out.push( new PIXI.Sprite(texture) );
+    }
+  }
+  return out
+}
 // Declare a global variable for our sprite so that the animate function can access it.
-var bunny = null;
-
+let bunnySprites = null;
+PIXI.loader.add('test','images/Test.png')
+.load(function(){
+  bunnySprites = spriteSheetArray('images/Test.png', 64, 64, 2, 2 )
+  console.log( "sprites", bunnySprites)
+  // var texture = PIXI.TextureCache["images/Test.png"];
+  // var rectangle = new PIXI.Rectangle(0, 0, 32, 32)
+  // texture.frame = rectangle;
+  // var bunny = new PIXI.Sprite(texture);
+  let bunny = bunnySprites[2]
+  bunny.position.x = level1.startPosition.x;
+  bunny.position.y = level1.startPosition.y;
+  stage.addChild(bunny);
+})
 // load the texture we need
-PIXI.loader.add('bunny', 'images/Test.png').load(function (loader, resources) {
-    // This creates a texture from a 'bunny.png' image.
-    bunny = new PIXI.Sprite(resources.bunny.texture);
+// PIXI.loader.add('bunny', 'images/Test.png').load(function (loader, resources) {
+//     // This creates a texture from a 'bunny.png' image.
+//     bunny = new PIXI.Sprite(resources.bunny.texture);
+//
+//     // Setup the position and scale of the bunny
+//     bunny.position.x = level1.startPosition.x;
+//     bunny.position.y = level1.startPosition.y;
+//
+//     bunny.scale.x = 0.5;
+//     bunny.scale.y = 0.5;
+//
+//     // Add the bunny to the scene we are building.
+//     stage.addChild(bunny);
+//
+//     // kick off the animation loop (defined below)
+//
+// });
+// var sprite;
+// var loader = new PIXI.loaders.Loader("./images", 5);
+// loader.add('example-sprites', 'example-sprite-sheet.json');
+// loader.on('complete', onAssetLoad);
+// loader.load();
 
-    // Setup the position and scale of the bunny
-    bunny.position.x = level1.startPosition.x;
-    bunny.position.y = level1.startPosition.y;
 
-    bunny.scale.x = 0.5;
-    bunny.scale.y = 0.5;
-
-    // Add the bunny to the scene we are building.
-    stage.addChild(bunny);
-
-    // kick off the animation loop (defined below)
-
-});
 
 
 const stepInput = document.getElementById( "steps");
@@ -67,8 +99,8 @@ function animate() {
     // bunny.rotation += 0.01;
     if(isRunning){
       if( steps > 0){
-        bunny.position.x += 5;
-        bunny.position.y += 0;
+        bunnySprites[3].position.x += 5;
+        bunnySprites[3].position.y += 0;
         steps--;
         if(steps === 0){
           isRunning = false;
