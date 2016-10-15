@@ -4,11 +4,13 @@ const instructionToImageClassMap ={
   walkDown: "fa fa-angle-down"
 
 }
-function Step({position, instruction}){
+
+
+function Step({position, instruction, onUpdateInstruction}){
   const imageClasses = instructionToImageClassMap[instruction]
   console.log( 'image clases', imageClasses)
   return(
-    <div className='panel-item'>
+    <div className='panel-item' onClick={()=>{ onUpdateInstruction(position) }}>
       <i className={imageClasses} aria-hidden="true"></i>
     </div>
   )

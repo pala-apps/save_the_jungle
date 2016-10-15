@@ -9,13 +9,28 @@ const Editor = React.createClass({
   getInitialState:function(){
     return { instructions: [ 'walkRight', 'walkDown', 'walkDown', 'walkRight' ] }
   },
+
+  updateInstruction:function(position){
+    const newInstructions = this.state.instructions.map((instruction, index)=>{
+      if(index === position){
+        if(instruction === 'walkDown'){
+          return 'walkRight'
+        }else{
+          return 'walkDown'
+        }
+      }
+      return instruction
+    })
+    this.setState({instructions: newInstructions})
+  },
+
   stepsUpdate:function(e){
     console.log('steps updated', e.target.value)
     this.setState( {steps: e.target.value} )
   },
   render: function() {
     const steps = this.state.instructions.map((instruction, index)=>{
-      return <Step key={index} instruction={instruction} />
+      return <Step key={index} position={index} instruction={instruction} onUpdateInstruction={this.updateInstruction} />
     })
     return (
       <div>
