@@ -6,13 +6,23 @@ import ReactDOM from 'react-dom';
 import Editor from './components/Editor.jsx'
 
 var dude;
-let steps = 0;
+
 let isRunning = false;
 
-function runGame(numSteps){
+let instructions = null;
+
+// function runGame(numSteps){
+//   isRunning = true
+//   steps = numSteps
+// }
+
+function runGame( givenInstructions ){
   isRunning = true
-  steps = numSteps
+  instructions = givenInstructions
 }
+
+
+// let setupInstructions = [ 'walkRight', 'walkRight', 'walkRight', 'walkRight' ]
 
 ReactDOM.render(
   <Editor runGame={runGame} />,
@@ -33,23 +43,57 @@ function create() {
   var walk = dude.animations.add('walk');
 }
 
-function update() {
+const runParams = {
+  stepsPerInstruction: 20
+}
+
+let instructionIndex = -1;
+let iteration = 0;
+let instruction = null;
+function update(){
   if(isRunning){
-    if( steps > 0){
-      dude.animations.play('walk', 5, true)
-      dude.x += 5;
-      steps--;
-      if(steps === 0){
-        dude.animations.stop('walk')
-        isRunning = false;
-        const hasWon = dude.x === 50
-        console.log('dudex', dude.x)
-        if(hasWon){
-          alert("Winner")
-        }else{
-          alert("Try Again")
-        }
-      }
+    if( iteration % runParams.stepsPerInstruction === 0 ){
+      instructionIndex++
+      instruction = instructions[instructionIndex]
     }
+
+    switch (instruction) {
+      case "walkRight":
+        dude.animations.play('walk', 5, true)
+        dude.x += 2;
+        break;
+      default:
+        dude.animations.stop('walk')
+        console.log("Doing nothing")
+    }
+
+    iteration++
   }
 }
+// function update() {
+//   if(isRunning){
+//     console.log('instructions', instructions)
+//     if( instructionIndex < instructions.length ){
+//       console.log('index', instructionIndex)
+//       const instruction = instructions[instructionIndex]
+//       switch (instruction) {
+//         case "walkRight":
+//           dude.animations.play('walk', 30, true)
+//           dude.x += 20;
+//           break;
+//         default:
+//           console.error("INSTRUCTION NOT FOUND")
+//       }
+//       instructionIndex++;
+//     }else{
+//       dude.animations.stop('walk')
+//       isRunning = false
+//       const hasWon = dude.x === 80
+//       if(hasWon){
+//         alert("Winner")
+//       }else{
+//         alert("Try Again")
+//       }
+//     }
+//   }
+// }

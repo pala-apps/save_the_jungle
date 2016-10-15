@@ -4,10 +4,10 @@ import Step from './Step.jsx'
 const Editor = React.createClass({
   onRunClick:function(){
     console.log('running game')
-    this.props.runGame(this.state.steps);
+    this.props.runGame( this.state.instructions );
   },
   getInitialState:function(){
-    return { steps: 0 }
+    return { instructions: [ 'walkRight', 'walkRight', 'walkRight', 'walkRight' ] }
   },
   stepsUpdate:function(e){
     console.log('steps updated', e.target.value)
@@ -24,7 +24,9 @@ const Editor = React.createClass({
           <Step/>
           <Step/>
           <Step/>
+
         </div>
+        <input className="btn-run" id="run" type="button" name="name" value="Run!" onClick={this.onRunClick}/>
       </div>
     );
   }
