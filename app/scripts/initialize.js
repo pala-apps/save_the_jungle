@@ -34,7 +34,9 @@ var game = new Phaser.Game(400, 800, Phaser.AUTO, 'canvas', { preload: preload, 
 
 
 function preload() {
-  game.load.spritesheet('dude', 'images/spritesheet_dude.png', 50, 50, 16)
+  // game.load.spritesheet('dude', 'images/spritesheet_dude.png', 50, 50, 16)
+
+  game.load.spritesheet('dude', 'images/snow_leapord_walking.png', 64, 64, 4)
 
 }
 
@@ -49,7 +51,7 @@ function create() {
 }
 
 const runParams = {
-  stepsPerInstruction: 30
+  stepsPerInstruction: 50
 }
 
 let instructionIndex = -1;
@@ -64,14 +66,15 @@ function update(){
 
     switch (instruction) {
       case "walkRight":
-        dude.animations.play('walk', 15, true)
+        dude.animations.play('walk', 2, true)
         dude.angle = 90;
-        dude.x += 2;
+        dude.x += 1;
+
         break;
       case "walkDown":
-        dude.animations.play('walk', 15, true)
+        dude.animations.play('walk', 2, true)
         dude.angle = 180;
-        dude.y += 2;
+        dude.y += 1;
         break;
       default:
         dude.animations.stop('walk')
@@ -81,30 +84,3 @@ function update(){
     iteration++
   }
 }
-// function update() {
-//   if(isRunning){
-//     console.log('instructions', instructions)
-//     if( instructionIndex < instructions.length ){
-//       console.log('index', instructionIndex)
-//       const instruction = instructions[instructionIndex]
-//       switch (instruction) {
-//         case "walkRight":
-//           dude.animations.play('walk', 30, true)
-//           dude.x += 20;
-//           break;
-//         default:
-//           console.error("INSTRUCTION NOT FOUND")
-//       }
-//       instructionIndex++;
-//     }else{
-//       dude.animations.stop('walk')
-//       isRunning = false
-//       const hasWon = dude.x === 80
-//       if(hasWon){
-//         alert("Winner")
-//       }else{
-//         alert("Try Again")
-//       }
-//     }
-//   }
-// }

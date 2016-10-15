@@ -7,7 +7,10 @@ const Editor = React.createClass({
     this.props.runGame( this.state.instructions );
   },
   getInitialState:function(){
-    return { instructions: [ 'walkRight', 'walkDown', 'walkDown', 'walkRight' ] }
+    return { instructions: [
+      'walkRight', 'walkRight', 'walkRight', 'walkRight',
+      'walkRight', 'walkRight', 'walkRight', 'walkRight'
+    ] }
   },
 
   updateInstruction:function(position){
