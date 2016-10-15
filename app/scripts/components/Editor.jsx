@@ -7,24 +7,23 @@ const Editor = React.createClass({
     this.props.runGame( this.state.instructions );
   },
   getInitialState:function(){
-    return { instructions: [ 'walkRight', 'walkRight', 'walkRight', 'walkRight' ] }
+    return { instructions: [ 'walkRight', 'walkDown', 'walkDown', 'walkRight' ] }
   },
   stepsUpdate:function(e){
     console.log('steps updated', e.target.value)
     this.setState( {steps: e.target.value} )
   },
   render: function() {
+    const steps = this.state.instructions.map((instruction, index)=>{
+      return <Step key={index} instruction={instruction} />
+    })
     return (
       <div>
         <div className="panel-header">
           LEVEL 1
         </div>
         <div className="panel-body">
-          <Step/>
-          <Step/>
-          <Step/>
-          <Step/>
-
+          { steps }
         </div>
         <input className="btn-run" id="run" type="button" name="name" value="Run!" onClick={this.onRunClick}/>
       </div>

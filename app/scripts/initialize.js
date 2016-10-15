@@ -65,7 +65,13 @@ function update(){
     switch (instruction) {
       case "walkRight":
         dude.animations.play('walk', 15, true)
+        dude.angle = 90;
         dude.x += 2;
+        break;
+      case "walkDown":
+        dude.animations.play('walk', 15, true)
+        dude.angle = 180;
+        dude.y += 2;
         break;
       default:
         dude.animations.stop('walk')
