@@ -34,17 +34,22 @@ var game = new Phaser.Game(400, 800, Phaser.AUTO, 'canvas', { preload: preload, 
 
 
 function preload() {
-  game.load.spritesheet('dude', 'images/Test.png', 32, 32, 4)
+  game.load.spritesheet('dude', 'images/spritesheet_dude.png', 50, 50, 16)
+
 }
 
 function create() {
-  game.stage.backgroundColor = "#4488AA";
+  game.stage.backgroundColor = "#000000";
   dude = game.add.sprite(0, 0, 'dude');
+  dude.anchor.setTo(0.5, 0.5);
+  dude.angle += 90;
+  dude.x = 50;
+  dude.y = 50;
   var walk = dude.animations.add('walk');
 }
 
 const runParams = {
-  stepsPerInstruction: 20
+  stepsPerInstruction: 30
 }
 
 let instructionIndex = -1;
@@ -59,7 +64,7 @@ function update(){
 
     switch (instruction) {
       case "walkRight":
-        dude.animations.play('walk', 5, true)
+        dude.animations.play('walk', 15, true)
         dude.x += 2;
         break;
       default:
