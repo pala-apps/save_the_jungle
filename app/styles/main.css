@@ -17,9 +17,6 @@ nav header h1 {
   color: #fff;
 }
 
-.panel {
-
-}
 
 .panel-header {
   font-size: 28px;
@@ -33,7 +30,7 @@ nav header h1 {
   padding: 25px;
   color: #fff;
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -83,16 +80,25 @@ input[type="text"] {
   outline: 0;
   cursor: pointer;
 }
-
-#container{
+.editor-container{
+  display: flex;
+  flex-direction: 'column';
+}
+.container{
   display: flex;
   flex-direction: 'row';
+  align-items: flex-start;
+  width: 100%;
 }
 
-#canvas{
-  flex-grow:1;
+.main{
+  flex:2;
 }
-#editor{
-  flex-grow:3;
+.side{
+  flex:1;
   background-color: #333;
+}
+
+.instruction-box{
+  flex:1;
 }

@@ -29,6 +29,11 @@ ReactDOM.render(
   document.getElementById('editor')
 )
 
+// ReactDOM.render(
+//   <Editor runGame={runGame} />,
+//   document.getElementById('editor-left')
+// )
+
 var game = new Phaser.Game(400, 800, Phaser.AUTO, 'canvas', { preload: preload, create: create, update: update });
 
 

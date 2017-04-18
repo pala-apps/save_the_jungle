@@ -1,19 +1,27 @@
 import React from 'react'
 import Step from './Step.jsx'
+import InstructionBox from './InstructionBox.jsx'
 
 const Editor = React.createClass({
   onRunClick:function(){
     console.log('running game')
-    this.props.runGame( this.state.instructions );
-  },
-  getInitialState:function(){
-    return { instructions: [
-      'walkRight', 'walkRight', 'walkRight', 'walkRight',
-      'walkRight', 'walkRight', 'walkRight', 'walkRight'
-    ] }
+    this.props.runGame( this.state );
   },
 
-  updateInstruction:function(position){
+  getInitialState:function(){
+    return {
+      instructionsHuman: [
+        'walkRight', 'walkRight', 'walkRight', 'walkRight',
+        'walkRight', 'walkRight', 'walkRight', 'walkRight'
+      ],
+      instructionsAnimal:[
+        'walkRight', 'walkRight', 'walkRight', 'walkRight',
+        'walkRight', 'walkRight', 'walkRight', 'walkRight'
+      ]
+    }
+  },
+
+  updateInstructionAnimal:function(position){
     const newInstructions = this.state.instructions.map((instruction, index)=>{
       if(index === position){
         if(instruction === 'walkDown'){
@@ -24,7 +32,21 @@ const Editor = React.createClass({
       }
       return instruction
     })
-    this.setState({instructions: newInstructions})
+    this.setState({instructionsAnimal: newInstructions})
+  },
+
+  updateInstructionHuman:function(position){
+    const newInstructions = this.state.instructions.map((instruction, index)=>{
+      if(index === position){
+        if(instruction === 'walkDown'){
+          return 'walkRight'
+        }else{
+          return 'walkDown'
+        }
+      }
+      return instruction
+    })
+    this.setState({instructionsHuman: newInstructions})
   },
 
   stepsUpdate:function(e){
@@ -32,16 +54,11 @@ const Editor = React.createClass({
     this.setState( {steps: e.target.value} )
   },
   render: function() {
-    const steps = this.state.instructions.map((instruction, index)=>{
-      return <Step key={index} position={index} instruction={instruction} onUpdateInstruction={this.updateInstruction} />
-    })
     return (
       <div>
-        <div className="panel-header">
-          LEVEL 1
-        </div>
-        <div className="panel-body">
-          { steps }
+        <div className="editor-container">
+          <InstructionBox name={"animal"} instructions={this.state.instructionsAnimal}/>
+          <InstructionBox name={"human"} instructions={this.state.instructionsHuman}/>
         </div>
         <input className="btn-run" id="run" type="button" name="name" value="Run!" onClick={this.onRunClick}/>
       </div>
