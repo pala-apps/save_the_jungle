@@ -5,7 +5,12 @@ const InstructionBox = React.createClass({
 
   render: function() {
     const steps = this.props.instructions.map((instruction, index)=>{
-      return <Step key={index} position={index} instruction={instruction} onUpdateInstruction={this.updateInstruction} />
+      return <Step
+        key={index}
+        position={index}
+        instruction={instruction}
+        onUpdateInstruction={this.props.updateInstruction}
+      />
     })
     return (
       <div className="instruction-box">

@@ -22,7 +22,7 @@ const Editor = React.createClass({
   },
 
   updateInstructionAnimal:function(position){
-    const newInstructions = this.state.instructions.map((instruction, index)=>{
+    const newInstructions = this.state.instructionsAnimal.map((instruction, index)=>{
       if(index === position){
         if(instruction === 'walkDown'){
           return 'walkRight'
@@ -36,7 +36,7 @@ const Editor = React.createClass({
   },
 
   updateInstructionHuman:function(position){
-    const newInstructions = this.state.instructions.map((instruction, index)=>{
+    const newInstructions = this.state.instructionsHuman.map((instruction, index)=>{
       if(index === position){
         if(instruction === 'walkDown'){
           return 'walkRight'
@@ -57,8 +57,16 @@ const Editor = React.createClass({
     return (
       <div>
         <div className="editor-container">
-          <InstructionBox name={"animal"} instructions={this.state.instructionsAnimal}/>
-          <InstructionBox name={"human"} instructions={this.state.instructionsHuman}/>
+          <InstructionBox
+            name={"animal"}
+            instructions={this.state.instructionsAnimal}
+            updateInstruction={this.updateInstructionAnimal}
+          />
+          <InstructionBox
+            name={"human"}
+            instructions={this.state.instructionsHuman}
+            updateInstruction={this.updateInstructionHuman}
+          />
         </div>
         <input className="btn-run" id="run" type="button" name="name" value="Run!" onClick={this.onRunClick}/>
       </div>
